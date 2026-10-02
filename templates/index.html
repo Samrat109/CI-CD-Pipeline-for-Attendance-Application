@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Management System</title>
+</head>
+
+<body>
+
+<h1>Student Attendance Management System</h1>
+
+<a href="/register">Register Student</a>
+
+<br><br>
+
+<a href="/attendance">Mark Attendance</a>
+
+<h2>Registered Students</h2>
+
+<table border="1">
+
+<tr>
+    <th>Name</th>
+    <th>Roll Number</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+    <td>{{ student.name }}</td>
+    <td>{{ student.roll_no }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>
