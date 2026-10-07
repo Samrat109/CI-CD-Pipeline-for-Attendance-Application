@@ -1,0 +1,4 @@
+phases:
+  build:
+    commands:
+      - docker build -t $ImageName -f app/Dockerfile .
