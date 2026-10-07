@@ -81,6 +81,31 @@
             margin-bottom: 24px;
         }
 
+        .empty-state,
+        .form-error {
+            margin-bottom: 20px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .empty-state {
+            background: #eff6ff;
+            color: #1e3a8a;
+        }
+
+        .form-error {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .empty-state a,
+        .form-error a {
+            color: inherit;
+            font-weight: 700;
+        }
+
         .form-group label {
             display: block;
             font-size: 14px;
@@ -197,6 +222,12 @@
             margin-top: 5px;
         }
 
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            transform: none;
+        }
+
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
@@ -275,7 +306,19 @@
 
         <div class="card">
 
-            <form method="POST">
+            <form method="POST" action="{{ url_for('mark_attendance') }}">
+
+                {% if error %}
+                <div class="form-error" role="alert">
+                    {{ error }} <a href="{{ url_for('register') }}">Register a student</a>.
+                </div>
+                {% endif %}
+
+                {% if not students %}
+                <div class="empty-state" role="status">
+                    No students have been registered yet. <a href="{{ url_for('register') }}">Register a student</a> to mark attendance.
+                </div>
+                {% endif %}
 
                 <!-- Student -->
                 <div class="form-group">
@@ -288,7 +331,9 @@
 
                         <span class="input-icon">👤</span>
 
-                        <select name="student" id="student">
+                        <select name="student" id="student" required {% if not students %}disabled{% endif %}>
+
+                            <option value="" disabled selected>Select a student</option>
 
                             {% for student in students %}
 
@@ -354,7 +399,7 @@
 
 
                 <!-- Submit -->
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" {% if not students %}disabled{% endif %}>
                     Mark Attendance
                 </button>
 

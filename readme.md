@@ -44,6 +44,8 @@ A lightweight Flask application for managing student registrations and tracking 
 ![alt text](Images/Screenshots/EC2.png)
 ![alt text](Images/Screenshots/Codebuild.png)
 
+## Result
+![alt text](Images/Result/Codepipeline.png)
 
 ### 1) Create a virtual environment
 

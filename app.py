@@ -38,8 +38,24 @@ def mark_attendance():
 
     if request.method == "POST":
 
-        student = request.form["student"]
-        status = request.form["status"]
+        student = request.form.get("student")
+        status = request.form.get("status")
+
+        if not students:
+            error = "Register a student before marking attendance."
+        elif student not in {registered_student["name"] for registered_student in students}:
+            error = "Select a registered student."
+        elif status not in {"Present", "Absent"}:
+            error = "Choose a valid attendance status."
+        else:
+            error = None
+
+        if error:
+            return render_template(
+                "attendance.html",
+                students=students,
+                error=error
+            )
 
         attendance.append({
             "student": student,
@@ -50,7 +66,8 @@ def mark_attendance():
 
     return render_template(
         "attendance.html",
-        students=students
+        students=students,
+        error=None
     )
 
 
