@@ -46,7 +46,8 @@ A lightweight Flask application for managing student registrations and tracking 
 
 ## Result
 ![alt text](Images/Result/Codepipeline.png)
-
+![alt text](<Images/Result/Register Student.png>)
+![alt text](<Images/Result/Mark Attendence.png>)
 ### 1) Create a virtual environment
 
 ```bash
